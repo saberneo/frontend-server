@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { DataService } from './data.service';
 import { ApiService } from './api.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -124,8 +123,13 @@ export class LoginComponent {
   loginWithOkta() {
     this.isLoading.set(true);
     this.error.set('');
-    // Redirigir a Kong — Kong inicia y gestiona todo el flujo OIDC server-side
-    window.location.href = environment.kongUrl;
+    this.api.getOktaAuthorizeUrl().subscribe({
+      next: (res) => { window.location.href = res.authorizationUrl; },
+      error: () => {
+        this.isLoading.set(false);
+        this.error.set('Could not reach Okta. Please try again or contact your administrator.');
+      },
+    });
   }
 
   loginAsDemo() {
