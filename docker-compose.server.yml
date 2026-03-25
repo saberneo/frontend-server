@@ -40,7 +40,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      NODE_ENV: production
+      NODE_ENV: development   # permite TypeORM synchronize (crea tablas automáticamente)
       PORT: 3000
       DB_HOST: postgres
       DB_PORT: 5432
