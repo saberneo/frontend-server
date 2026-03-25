@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindy MVP Architecture</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0A1628 0%, #1a2744 100%);
+      min-height: 100vh;
+      color: #F8FAFC;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #00D4FF;
+      margin-bottom: 8px;
+    }
+    
+    header p {
+      color: #94A3B8;
+      font-size: 1.1rem;
+    }
+    
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: #94A3B8;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+    
+    .architecture {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .layer {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .layer-label {
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: #0A1628;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+    
+    .layer-m1 { border-color: #EF4444; }
+    .layer-m1 .layer-label { color: #EF4444; border: 1px solid #EF4444; }
+    
+    .layer-m2 { border-color: #8B5CF6; }
+    .layer-m2 .layer-label { color: #8B5CF6; border: 1px solid #8B5CF6; }
+    
+    .layer-m3 { border-color: #10B981; }
+    .layer-m3 .layer-label { color: #10B981; border: 1px solid #10B981; }
+    
+    .layer-m4 { border-color: #F59E0B; }
+    .layer-m4 .layer-label { color: #F59E0B; border: 1px solid #F59E0B; }
+    
+    .layer-m5 { border-color: #14B8A6; }
+    .layer-m5 .layer-label { color: #14B8A6; border: 1px solid #14B8A6; }
+    
+    .layer-m6 { border-color: #00D4FF; }
+    .layer-m6 .layer-label { color: #00D4FF; border: 1px solid #00D4FF; }
+    
+    .layer-content {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .component {
+      background: #152238;
+      border-radius: 8px;
+      padding: 16px;
+      min-width: 160px;
+      flex: 1;
+      max-width: 220px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .component:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    .component h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #F8FAFC;
+    }
+    
+    .component p {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      line-height: 1.5;
+    }
+    
+    .component .tech {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.7rem;
+      color: #64748B;
+    }
+    
+    .component-m1 { border-left: 3px solid #EF4444; }
+    .component-m1 h3 { color: #EF4444; }
+    
+    .component-m2 { border-left: 3px solid #8B5CF6; }
+    .component-m2 h3 { color: #8B5CF6; }
+    
+    .component-m3 { border-left: 3px solid #10B981; }
+    .component-m3 h3 { color: #10B981; }
+    
+    .component-m4 { border-left: 3px solid #F59E0B; }
+    .component-m4 h3 { color: #F59E0B; }
+    
+    .component-m5 { border-left: 3px solid #14B8A6; }
+    .component-m5 h3 { color: #14B8A6; }
+    
+    .component-m6 { border-left: 3px solid #00D4FF; }
+    .component-m6 h3 { color: #00D4FF; }
+    
+    .connector {
+      display: flex;
+      justify-content: center;
+      padding: 8px 0;
+    }
+    
+    .connector svg {
+      width: 30px;
+      height: 30px;
+      color: #64748B;
+    }
+    
+    .data-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      background: rgba(0, 212, 255, 0.1);
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    
+    .data-flow span {
+      font-size: 0.8rem;
+      color: #00D4FF;
+    }
+    
+    .data-flow .arrow {
+      color: #00D4FF;
+      font-size: 1.2rem;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64748B;
+      margin: 16px 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .mvp-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #10B981;
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    
+    .deferred-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(239, 68, 68, 0.2);
+      color: #EF4444;
+      font-size: 0.6rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+    
+    .stat {
+      text-align: center;
+      padding: 16px 24px;
+      background: #152238;
+      border-radius: 8px;
+      min-width: 120px;
+    }
+    
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #00D4FF;
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+    
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+    }
+    
+    .workflow-item {
+      background: rgba(245, 158, 11, 0.1);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: #F59E0B;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .layer-content {
+        flex-direction: column;
+      }
+      
+      .component {
+        max-width: 100%;
+      }
+      
+      .workflow-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .stats-row {
+        gap: 12px;
+      }
+      
+      .stat {
+        min-width: 100px;
+        padding: 12px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MINDY MVP Architecture</h1>
+      <p>6-Month Achievable Architecture for Enterprise AI Platform</p>
+    </header>
+    
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">DB Connectors</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">3</div>
+        <div class="stat-label">AI Databases</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Domain Agents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">10</div>
+        <div class="stat-label">Workflows</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">30</div>
+        <div class="stat-label">Beta Users</div>
+      </div>
+    </div>
+    
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color" style="background: #EF4444;"></div>
+        <span>M1 - Data Mediation</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #8B5CF6;"></div>
+        <span>M2 - Intelligence Hub</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #10B981;"></div>
+        <span>M3 - AI Databases</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #F59E0B;"></div>
+        <span>M4 - Workflows</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #14B8A6;"></div>
+        <span>M5 - Infrastructure</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #00D4FF;"></div>
+        <span>M6 - User Experience</span>
+      </div>
+    </div>
+    
+    <div class="architecture">
+      <!-- M6 - User Experience -->
+      <div class="layer layer-m6">
+        <div class="layer-label">M6 - User Experience</div>
+        <div class="layer-content">
+          <div class="component component-m6">
+            <span class="mvp-badge">MVP</span>
+            <h3>Dashboard</h3>
+            <p>KPIs, recent activity, system status overview</p>
+            <div class="tech">Next.js 14 + Tailwind</div>
+          </div>
+          <div class="component component-m6">
+            <span class="mvp-badge">MVP</span>
+            <h3>Chat Interface</h3>
+            <p>Conversational AI with Finance & HR agents</p>
+            <div class="tech">WebSocket + React</div>
+          </div>
+          <div class="component component-m6">
+            <span class="mvp-badge">MVP</span>
+            <h3>Workflow UI</h3>
+            <p>Approval queues, task management, status tracking</p>
+            <div class="tech">Shadcn/ui Components</div>
+          </div>
+          <div class="component component-m6">
+            <span class="mvp-badge">MVP</span>
+            <h3>Reports Viewer</h3>
+            <p>Financial reports, HR analytics, PDF export</p>
+            <div class="tech">Chart.js + PDF Generation</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="connector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+      
+      <!-- API Gateway -->
+      <div class="data-flow">
+        <span>API Gateway (NGINX)</span>
+        <span class="arrow">→</span>
+        <span>JWT Auth</span>
+        <span class="arrow">→</span>
+        <span>Rate Limiting</span>
+        <span class="arrow">→</span>
+        <span>Load Balancing</span>
+      </div>
+      
+      <!-- M2 - Intelligence Hub -->
+      <div class="layer layer-m2">
+        <div class="layer-label">M2 - Intelligence Hub (Simplified)</div>
+        <div class="layer-content">
+          <div class="component component-m2">
+            <span class="mvp-badge">MVP</span>
+            <h3>Planner Agent</h3>
+            <p>Intent classification, task decomposition, worker routing</p>
+            <div class="tech">Node.js + LangChain</div>
+          </div>
+          <div class="component component-m2">
+            <span class="mvp-badge">MVP</span>
+            <h3>Finance Worker</h3>
+            <p>ERP queries, calculations, report generation</p>
+            <div class="tech">GPT-4 + RAG</div>
+          </div>
+          <div class="component component-m2">
+            <span class="mvp-badge">MVP</span>
+            <h3>HR Worker</h3>
+            <p>Employee queries, resume analysis, org charts</p>
+            <div class="tech">GPT-4 + RAG</div>
+          </div>
+          <div class="component component-m2">
+            <span class="mvp-badge">MVP</span>
+            <h3>Validation Layer</h3>
+            <p>Output checking, error detection, quality scoring</p>
+            <div class="tech">Rule Engine + LLM</div>
+          </div>
+          <div class="component component-m2" style="opacity: 0.5;">
+            <span class="deferred-badge">POST-MVP</span>
+            <h3>Council of Critics</h3>
+            <p>Multi-agent validation, consensus building</p>
+            <div class="tech">Deferred to Phase 2</div>
+          </div>
+          <div class="component component-m2" style="opacity: 0.5;">
+            <span class="deferred-badge">POST-MVP</span>
+            <h3>World Model</h3>
+            <p>Simulation, prediction, what-if analysis</p>
+            <div class="tech">Deferred to Phase 3</div>
+          </div>
+        </div>
+        <div class="data-flow" style="margin-top: 16px;">
+          <span>LLM Integration</span>
+          <span class="arrow">:</span>
+          <span>OpenAI GPT-4 (Primary)</span>
+          <span class="arrow">|</span>
+          <span>Anthropic Claude (Fallback)</span>
+        </div>
+      </div>
+      
+      <div class="connector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+      
+      <!-- M3 - AI Databases -->
+      <div class="layer layer-m3">
+        <div class="layer-label">M3 - AI Database Engine</div>
+        <div class="layer-content">
+          <div class="component component-m3">
+            <span class="mvp-badge">MVP</span>
+            <h3>Vector Database</h3>
+            <p>Document embeddings, semantic search, RAG context</p>
+            <div class="tech">Pinecone (200-500GB)</div>
+          </div>
+          <div class="component component-m3">
+            <span class="mvp-badge">MVP</span>
+            <h3>Graph Database</h3>
+            <p>Entity relationships, org hierarchy, knowledge graph</p>
+            <div class="tech">Neo4j Aura (4vCPU/16GB)</div>
+          </div>
+          <div class="component component-m3">
+            <span class="mvp-badge">MVP</span>
+            <h3>Time-Series DB</h3>
+            <p>Agent metrics, system health, cost tracking</p>
+            <div class="tech">TimescaleDB (1yr hot)</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="connector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+      
+      <!-- M4 - Workflows -->
+      <div class="layer layer-m4">
+        <div class="layer-label">M4 - Workflow & Integration</div>
+        <p class="section-title">10 Pre-Defined Business Workflows</p>
+        <div class="workflow-grid">
+          <div class="workflow-item">💰 Expense Approval</div>
+          <div class="workflow-item">📄 Invoice Processing</div>
+          <div class="workflow-item">📊 Budget Variance</div>
+          <div class="workflow-item">📅 Month-End Close</div>
+          <div class="workflow-item">📈 Financial Reports</div>
+          <div class="workflow-item">👤 Onboarding</div>
+          <div class="workflow-item">📝 Resume Screening</div>
+          <div class="workflow-item">🏖️ Time-Off Request</div>
+          <div class="workflow-item">⭐ Performance Review</div>
+          <div class="workflow-item">👋 Offboarding</div>
+        </div>
+        <div class="layer-content" style="margin-top: 16px;">
+          <div class="component component-m4">
+            <span class="mvp-badge">MVP</span>
+            <h3>Workflow Engine</h3>
+            <p>Simple state machine, step execution, error handling</p>
+            <div class="tech">Custom Node.js Engine</div>
+          </div>
+          <div class="component component-m4">
+            <span class="mvp-badge">MVP</span>
+            <h3>Approval Service</h3>
+            <p>Routing, escalation, notification triggers</p>
+            <div class="tech">Redis Queues</div>
+          </div>
+          <div class="component component-m4">
+            <span class="mvp-badge">MVP</span>
+            <h3>Integration Hub</h3>
+            <p>Email, Slack notifications, PDF generation</p>
+            <div class="tech">SendGrid + Slack API</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="connector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+      
+      <!-- Message Broker -->
+      <div class="data-flow">
+        <span>Apache Kafka (MSK)</span>
+        <span class="arrow">:</span>
+        <span>connector-events</span>
+        <span class="arrow">|</span>
+        <span>agent-tasks</span>
+        <span class="arrow">|</span>
+        <span>workflow-events</span>
+        <span class="arrow">|</span>
+        <span>notifications</span>
+      </div>
+      
+      <!-- M1 - Data Mediation -->
+      <div class="layer layer-m1">
+        <div class="layer-label">M1 - Data Mediation Layer</div>
+        <p class="section-title">5 Business Database Connectors</p>
+        <div class="layer-content">
+          <div class="component component-m1">
+            <span class="mvp-badge">MVP</span>
+            <h3>ERP Connector</h3>
+            <p>SAP, Oracle, Dynamics - Financial transactions, GL</p>
+            <div class="tech">Debezium CDC</div>
+          </div>
+          <div class="component component-m1">
+            <span class="mvp-badge">MVP</span>
+            <h3>HR Connector</h3>
+            <p>Workday, ADP, BambooHR - Employee data, org</p>
+            <div class="tech">REST API Polling</div>
+          </div>
+          <div class="component component-m1">
+            <span class="mvp-badge">MVP</span>
+            <h3>CRM Connector</h3>
+            <p>Salesforce, HubSpot - Customers, pipeline</p>
+            <div class="tech">REST API + Webhooks</div>
+          </div>
+          <div class="component component-m1">
+            <span class="mvp-badge">MVP</span>
+            <h3>E-Commerce Connector</h3>
+            <p>Shopify, Magento - Orders, inventory</p>
+            <div class="tech">GraphQL + Webhooks</div>
+          </div>
+          <div class="component component-m1">
+            <span class="mvp-badge">MVP</span>
+            <h3>Production Connector</h3>
+            <p>MES, SCADA - Equipment, sensors, metrics</p>
+            <div class="tech">OPC-UA + MQTT</div>
+          </div>
+        </div>
+        <div class="data-flow" style="margin-top: 16px;">
+          <span>Data Flow</span>
+          <span class="arrow">:</span>
+          <span>Source DBs</span>
+          <span class="arrow">→</span>
+          <span>Debezium</span>
+          <span class="arrow">→</span>
+          <span>Kafka</span>
+          <span class="arrow">→</span>
+          <span>Transform</span>
+          <span class="arrow">→</span>
+          <span>Data Lake</span>
+        </div>
+      </div>
+      
+      <div class="connector">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </div>
+      
+      <!-- Primary Data Stores -->
+      <div class="data-flow">
+        <span>PostgreSQL (RDS)</span>
+        <span class="arrow">|</span>
+        <span>Redis (ElastiCache)</span>
+        <span class="arrow">:</span>
+        <span>Unified Data Lake + Application State + Cache</span>
+      </div>
+      
+      <!-- M5 - Infrastructure -->
+      <div class="layer layer-m5">
+        <div class="layer-label">M5 - Infrastructure & DevOps</div>
+        <div class="layer-content">
+          <div class="component component-m5">
+            <span class="mvp-badge">MVP</span>
+            <h3>Kubernetes (EKS)</h3>
+            <p>9-24 nodes, 68-264 vCPU, 264GB-1TB RAM</p>
+            <div class="tech">AWS EKS 1.28</div>
+          </div>
+          <div class="component component-m5">
+            <span class="mvp-badge">MVP</span>
+            <h3>CI/CD Pipeline</h3>
+            <p>Build, test, deploy automation</p>
+            <div class="tech">GitHub Actions + ArgoCD</div>
+          </div>
+          <div class="component component-m5">
+            <span class="mvp-badge">MVP</span>
+            <h3>Monitoring</h3>
+            <p>Metrics, dashboards, alerting</p>
+            <div class="tech">Prometheus + Grafana</div>
+          </div>
+          <div class="component component-m5">
+            <span class="mvp-badge">MVP</span>
+            <h3>Logging & Tracing</h3>
+            <p>Centralized logs, distributed tracing</p>
+            <div class="tech">ELK Stack + Jaeger</div>
+          </div>
+        </div>
+        <div class="data-flow" style="margin-top: 16px;">
+          <span>AWS Cloud (Single Region: us-east-1)</span>
+          <span class="arrow">|</span>
+          <span>VPC + Private Subnets</span>
+          <span class="arrow">|</span>
+          <span>$7K-12K/month</span>
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(0, 212, 255, 0.1); border-radius: 12px;">
+      <h3 style="color: #00D4FF; margin-bottom: 12px;">MVP Success Criteria</h3>
+      <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; color: #94A3B8; font-size: 0.9rem;">
+        <span>✓ 5 Connectors Operational</span>
+        <span>✓ 10 Workflows Executing</span>
+        <span>✓ 95%+ Uptime</span>
+        <span>✓ &lt;500ms API Response</span>
+        <span>✓ 20-30 Beta Users</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

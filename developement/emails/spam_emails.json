@@ -1,0 +1,50 @@
+[
+  {
+    "id": "spam_001",
+    "from": "winner@lottery-international.biz",
+    "to": "sarah.vp@company.com",
+    "subject": "CONGRATULATIONS! You've Won $1,000,000!!!",
+    "body": "Dear Lucky Winner,\n\nCONGRATULATIONS! You have been selected as the winner of our International Lottery Draw!\n\nPrize Amount: $1,000,000 USD\n\nTo claim your prize, please reply with:\n- Full Name\n- Address\n- Bank Account Details\n\nAct now! This offer expires in 48 hours!\n\nInternational Lottery Commission",
+    "timestamp": "2025-01-06T03:22:00Z",
+    "labels": [
+      "SPAM"
+    ],
+    "spam_score": 0.98
+  },
+  {
+    "id": "spam_002",
+    "from": "ceo@company-verify.xyz",
+    "to": "sarah.vp@company.com",
+    "subject": "URGENT: Verify Your Account Immediately",
+    "body": "Dear User,\n\nYour account has been flagged for suspicious activity. Please verify your identity immediately to prevent account suspension.\n\nClick here to verify: [suspicious-link]\n\nFailure to verify within 24 hours will result in permanent account deletion.\n\nSecurity Team",
+    "timestamp": "2025-01-07T02:45:00Z",
+    "labels": [
+      "SPAM"
+    ],
+    "spam_score": 0.95
+  },
+  {
+    "id": "spam_003",
+    "from": "deals@bestpills-online.ru",
+    "to": "sarah.vp@company.com",
+    "subject": "50% OFF - Premium Supplements - Limited Time!",
+    "body": "Amazing deals on premium supplements!\n\n✓ 50% discount\n✓ Fast shipping worldwide\n✓ No prescription needed\n\nOrder now: [link]\n\nThis offer won't last!",
+    "timestamp": "2025-01-08T05:12:00Z",
+    "labels": [
+      "SPAM"
+    ],
+    "spam_score": 0.97
+  },
+  {
+    "id": "spam_004",
+    "from": "investment@crypto-millions.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Make $5000/day with Crypto Trading Bot",
+    "body": "Revolutionary AI Trading Bot!\n\n✓ Guaranteed profits\n✓ $5000+ per day\n✓ Only 10 spots left!\n\nJoin now for early bird discount: $99 (Regular price: $999)\n\nDon't miss this opportunity!\n\n[Join Now]",
+    "timestamp": "2025-01-09T04:30:00Z",
+    "labels": [
+      "SPAM"
+    ],
+    "spam_score": 0.99
+  }
+]

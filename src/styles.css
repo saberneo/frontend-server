@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-main: var(--bg-main);
+  --color-bg-sidebar: var(--bg-sidebar);
+  --color-border-subtle: var(--border-subtle);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-bg-hover: var(--bg-hover);
+  --color-bg-card: var(--bg-card);
+  --color-bg-input: var(--bg-input);
+}
+
+:root {
+  /* Light Mode (Default) */
+  --bg-main: #f8fafc;
+  --bg-sidebar: #ffffff;
+  --border-subtle: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --bg-hover: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+}
+
+.dark {
+  /* Dark Mode */
+  --bg-main: #0f111a;
+  --bg-sidebar: #141620;
+  --border-subtle: #1e2130;
+  --text-primary: #d4d4d4;
+  --text-secondary: #737373;
+  --bg-hover: rgba(30, 33, 48, 0.5);
+  --bg-card: #141620;
+  --bg-input: #0f111a;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+}

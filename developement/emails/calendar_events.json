@@ -1,0 +1,164 @@
+{
+  "week1": [
+    {
+      "id": "event_001",
+      "summary": "Q4 Planning with Sales Team",
+      "description": "Review Q4 targets and strategy",
+      "start": "2025-01-06T09:30:00Z",
+      "end": "2025-01-06T10:30:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "john.sales@company.com",
+        "team@company.com"
+      ],
+      "location": "Conference Room A"
+    },
+    {
+      "id": "event_002",
+      "summary": "1-on-1 with John (Sales Manager)",
+      "description": "Weekly check-in",
+      "start": "2025-01-06T14:00:00Z",
+      "end": "2025-01-06T14:30:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "john.sales@company.com"
+      ],
+      "location": "Sarah's Office"
+    },
+    {
+      "id": "event_003",
+      "summary": "Emergency Call - Acme Corp",
+      "description": "Production issue resolution",
+      "start": "2025-01-07T11:00:00Z",
+      "end": "2025-01-07T12:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "tom.anderson@acmecorp.com",
+        "mike.stevens@company.com"
+      ],
+      "location": "Zoom",
+      "status": "urgent"
+    },
+    {
+      "id": "event_004",
+      "summary": "Budget Review Meeting",
+      "description": "Q1 budget planning",
+      "start": "2025-01-07T14:00:00Z",
+      "end": "2025-01-07T15:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "maria.finance@company.com",
+        "cfo@company.com"
+      ],
+      "location": "Conference Room B"
+    },
+    {
+      "id": "event_005",
+      "summary": "On-site Visit - TechFlow Inc",
+      "description": "Contract renewal discussion",
+      "start": "2025-01-08T16:00:00Z",
+      "end": "2025-01-08T17:30:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "jennifer.martinez@techflow.com"
+      ],
+      "location": "TechFlow Office, 123 Tech Street"
+    },
+    {
+      "id": "event_006",
+      "summary": "Strategy Review",
+      "description": "2025 strategic initiatives",
+      "start": "2025-01-08T10:00:00Z",
+      "end": "2025-01-08T11:30:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "ceo@company.com",
+        "leadership@company.com"
+      ],
+      "location": "Executive Boardroom"
+    },
+    {
+      "id": "event_007",
+      "summary": "Quarterly Review - Global Systems",
+      "description": "Q4 performance and 2025 planning",
+      "start": "2025-01-09T14:00:00Z",
+      "end": "2025-01-09T15:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "robert.kim@globalsystems.com"
+      ],
+      "location": "Zoom"
+    },
+    {
+      "id": "event_008",
+      "summary": "Product Demo - DataCorp",
+      "description": "Demo new features and discuss pricing",
+      "start": "2025-01-10T10:00:00Z",
+      "end": "2025-01-10T11:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "amanda.foster@datacorp.com",
+        "sales@company.com"
+      ],
+      "location": "Zoom"
+    },
+    {
+      "id": "event_009",
+      "summary": "Team Happy Hour",
+      "description": "Celebrate Q4 success",
+      "start": "2025-01-10T17:00:00Z",
+      "end": "2025-01-10T19:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com",
+        "team@company.com"
+      ],
+      "location": "Murphy's Bar"
+    }
+  ],
+  "personal": [
+    {
+      "id": "event_010",
+      "summary": "Dentist Appointment",
+      "description": "Regular checkup",
+      "start": "2025-01-07T08:00:00Z",
+      "end": "2025-01-07T09:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com"
+      ],
+      "location": "Downtown Dental"
+    },
+    {
+      "id": "event_011",
+      "summary": "Emma's Soccer Practice",
+      "description": "Drop-off and pick-up",
+      "start": "2025-01-08T18:00:00Z",
+      "end": "2025-01-08T19:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com"
+      ],
+      "location": "City Park Field 3"
+    },
+    {
+      "id": "event_012",
+      "summary": "Personal Training",
+      "description": "Upper body and core workout",
+      "start": "2025-01-11T07:00:00Z",
+      "end": "2025-01-11T08:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com"
+      ],
+      "location": "Fitness Studio"
+    },
+    {
+      "id": "event_013",
+      "summary": "Sunday Brunch with Parents",
+      "description": "Family brunch",
+      "start": "2025-01-12T11:00:00Z",
+      "end": "2025-01-12T13:00:00Z",
+      "attendees": [
+        "sarah.vp@company.com"
+      ],
+      "location": "Home"
+    }
+  ]
+}

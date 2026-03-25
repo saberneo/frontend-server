@@ -1,0 +1,5 @@
+{
+  "name": "Nexus Platform Dashboard",
+  "description": "A dark-themed administrative dashboard for managing data connectors, schema registry, and platform health.",
+  "requestFramePermissions": []
+}

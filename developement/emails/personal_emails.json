@@ -1,0 +1,80 @@
+[
+  {
+    "id": "personal_001",
+    "from": "school@kidschool.edu",
+    "to": "sarah.vp@company.com",
+    "subject": "Parent-Teacher Conference Scheduled",
+    "body": "Dear Parent,\n\nYour parent-teacher conference has been scheduled for:\n\nDate: January 15th\nTime: 4:00 PM\nTeacher: Ms. Johnson\nStudent: Emma\n\nPlease confirm your attendance by replying to this email.\n\nBest regards,\nOakwood Elementary School",
+    "timestamp": "2025-01-06T11:30:00Z",
+    "labels": [
+      "PERSONAL",
+      "INBOX"
+    ],
+    "category": "family"
+  },
+  {
+    "id": "personal_002",
+    "from": "orders@amazon.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Your Amazon order has shipped",
+    "body": "Hello,\n\nYour order #123-4567890-1234567 has shipped!\n\nItems:\n- Kids' Science Kit\n- Noise-Canceling Headphones\n\nExpected delivery: January 10th\n\nTrack your package: [tracking link]\n\nThanks for shopping with Amazon!",
+    "timestamp": "2025-01-07T09:15:00Z",
+    "labels": [
+      "PERSONAL",
+      "INBOX"
+    ],
+    "category": "shopping"
+  },
+  {
+    "id": "personal_003",
+    "from": "newsletter@techcrunch.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Daily Crunch: AI Startup Raises $100M Series B",
+    "body": "Good morning!\n\nToday's top tech stories:\n- AI Startup SecureAI Raises $100M Series B\n- Google Announces New Cloud Features\n- Cybersecurity Threats on the Rise\n\n[Read more...]\n\n--\nTechCrunch Newsletter\nUnsubscribe | Manage Preferences",
+    "timestamp": "2025-01-08T07:00:00Z",
+    "labels": [
+      "NEWSLETTER",
+      "INBOX"
+    ],
+    "category": "newsletter"
+  },
+  {
+    "id": "personal_004",
+    "from": "mom@family.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Re: Weekend Plans",
+    "body": "Hi Sweetie,\n\nYes, we'd love to come over for Sunday brunch! We'll bring mimosas and fresh bagels.\n\nIs 11 AM still good?\n\nLove,\nMom",
+    "timestamp": "2025-01-08T19:30:00Z",
+    "labels": [
+      "PERSONAL",
+      "INBOX"
+    ],
+    "category": "family"
+  },
+  {
+    "id": "personal_005",
+    "from": "noreply@spotify.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Your Spotify Wrapped 2024 is Ready!",
+    "body": "Hey there!\n\nYour 2024 Spotify Wrapped is ready! Discover your top songs, artists, and genres of the year.\n\nView Your Wrapped →\n\nHappy listening!\n- The Spotify Team",
+    "timestamp": "2025-01-09T08:00:00Z",
+    "labels": [
+      "NEWSLETTER",
+      "INBOX"
+    ],
+    "category": "entertainment"
+  },
+  {
+    "id": "personal_006",
+    "from": "trainer@fitnessstudio.com",
+    "to": "sarah.vp@company.com",
+    "subject": "Personal Training Session Reminder - Tomorrow 7 AM",
+    "body": "Hi Sarah!\n\nReminder: Your personal training session is tomorrow (Saturday) at 7:00 AM.\n\nWe'll focus on upper body strength and core work.\n\nSee you bright and early!\n\nCoach Mike",
+    "timestamp": "2025-01-10T18:00:00Z",
+    "labels": [
+      "PERSONAL",
+      "INBOX"
+    ],
+    "category": "fitness"
+  }
+]

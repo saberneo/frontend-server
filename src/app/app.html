@@ -1,0 +1,451 @@
+@if (dataService.isLoggedIn()) {
+<div class="flex h-screen bg-bg-main text-text-primary font-sans overflow-hidden">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-bg-sidebar border-r border-border-subtle flex flex-col shrink-0">
+    <!-- Header -->
+    <div class="p-6 border-b border-border-subtle">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded bg-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+          N
+        </div>
+        <div>
+          <h1 class="text-text-primary font-semibold text-sm leading-tight">
+            {{ dataService.currentRole() === 'Platform Admin' ? 'NEXUS Admin' : dataService.currentRole() === 'CFO' ? 'NEXUS Finance' : dataService.currentRole() === 'CEO' ? 'NEXUS Executive' : 'NEXUS Platform' }}
+          </h1>
+          <p class="text-text-secondary text-xs">
+            {{ dataService.currentRole() === 'Platform Admin' ? 'Platform Administration' : dataService.currentRole() === 'CFO' ? 'Financial Intelligence' : dataService.currentRole() === 'CEO' ? 'Executive Dashboard' : 'Business Intelligence' }}
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 text-[11px] text-text-secondary bg-bg-main p-2 rounded border border-border-subtle">
+        <div class="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+        <span>acme-corp</span>
+        <span class="text-text-secondary">•</span>
+        <span>active</span>
+        @if (dataService.currentRole() === 'Platform Admin') {
+          <span class="text-text-secondary">•</span>
+          <span>CDM v1.3</span>
+        }
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 overflow-y-auto py-4 space-y-6">
+      @if (dataService.currentRole() === 'Platform Admin') {
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Data Sources</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/source-connectors" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">cable</span>
+                <span>{{ 'NAV.SOURCE_CONNECTORS' | translate }}</span>
+              </div>
+              <span class="bg-indigo-600/20 text-indigo-400 py-0.5 px-2 rounded-full text-[10px] font-medium">{{ dataService.connectors().length }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/schema-registry" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">schema</span>
+                <span>{{ 'NAV.SCHEMA_REGISTRY' | translate }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">CDM & Mappings</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/cdm-governance" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">gavel</span>
+                <span>{{ 'NAV.CDM_GOVERNANCE' | translate }}</span>
+              </div>
+              <span class="bg-rose-500/20 text-rose-400 py-0.5 px-2 rounded-full text-[10px] font-medium">{{ dataService.proposals().length }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/field-mappings" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">compare_arrows</span>
+                <span>{{ 'NAV.FIELD_MAPPINGS' | translate }}</span>
+              </div>
+              <span class="bg-amber-500/20 text-amber-400 py-0.5 px-2 rounded-full text-[10px] font-medium">{{ dataService.mappings().length }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cdm-versions" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">history</span>
+                <span>{{ 'NAV.CDM_VERSIONS' | translate }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Platform</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/system-health" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">monitor_heart</span>
+                <span>{{ 'NAV.SYSTEM_HEALTH' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/tenants" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">domain</span>
+                <span>{{ 'NAV.TENANTS' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/users-roles" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">group</span>
+                <span>{{ 'NAV.USERS_ROLES' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/audit-log" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">manage_search</span>
+                <span>{{ 'NAV.AUDIT_LOG' | translate }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      } @else if (dataService.currentRole() === 'CFO') {
+      <!-- CFO Sidebar -->
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Financial</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/cfo-pnl" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">receipt_long</span>
+                <span>P&amp;L Overview</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cfo-budget" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">balance</span>
+                <span>Budget vs Actual</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cfo-cashflow" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">account_balance_wallet</span>
+                <span>Cash Flow</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cfo-receivables" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">request_quote</span>
+                <span>Receivables</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Analysis</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/cfo-cost-analysis" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">donut_small</span>
+                <span>Cost Analysis</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/cfo-forecast" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">timeline</span>
+                <span>Forecast</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      } @else if (dataService.currentRole() === 'CEO') {
+      <!-- CEO Sidebar -->
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Overview</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/ceo-pulse" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">monitor_heart</span>
+                <span>Company Pulse</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/ceo-growth" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">trending_up</span>
+                <span>Growth &amp; Revenue</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/ceo-market" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">public</span>
+                <span>Market &amp; Customers</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Strategic</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/ceo-strategy" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">flag</span>
+                <span>Strategic Priorities</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/ceo-risks" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">shield</span>
+                <span>Risks &amp; Watchlist</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      } @else {
+      <!-- Business User Sidebar -->
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Insights</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/overview" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">home</span>
+                <span>{{ 'NAV.OVERVIEW' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/ask-nexus" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">chat</span>
+                <span>{{ 'NAV.ASK_NEXUS' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/customers" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">favorite</span>
+                <span>{{ 'NAV.CUSTOMERS' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/orders-sales" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">inventory_2</span>
+                <span>{{ 'NAV.ORDERS_SALES' | translate }}</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/products" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">category</span>
+                <span>{{ 'NAV.PRODUCTS' | translate }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-[10px] font-semibold text-text-secondary uppercase tracking-widest mb-2 px-6">Actions</h2>
+        <ul class="space-y-0.5 px-3">
+          <li>
+            <a routerLink="/pending-approvals" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">check_circle</span>
+                <span>{{ 'NAV.PENDING_APPROVALS' | translate }}</span>
+              </div>
+              <span class="bg-rose-500/20 text-rose-400 py-0.5 px-2 rounded-full text-[10px] font-medium">{{ pendingCount() }}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/data-health" routerLinkActive="bg-bg-hover text-text-primary" class="flex items-center px-3 py-2 rounded-md text-sm hover:bg-bg-hover transition-colors text-text-secondary">
+              <div class="flex items-center gap-3">
+                <span class="material-icons text-[18px]">health_and_safety</span>
+                <span>{{ 'NAV.DATA_HEALTH' | translate }}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      }
+    </nav>
+
+    <!-- Footer Profile -->
+    <div class="p-4 border-t border-border-subtle flex items-center justify-between mt-auto">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-bg-hover flex items-center justify-center text-xs font-medium text-text-primary border border-border-subtle">
+          {{ dataService.currentUser().initials }}
+        </div>
+        <div>
+          <div class="text-sm font-medium text-text-primary">{{ dataService.currentUser().name }}</div>
+          <div class="text-[10px] text-text-secondary">{{ dataService.currentUser().title }}</div>
+        </div>
+      </div>
+      <button (click)="dataService.logout()" class="text-text-secondary hover:text-rose-500 transition-colors flex items-center justify-center w-8 h-8 rounded-md hover:bg-rose-500/10" title="Logout">
+        <span class="material-icons text-[18px]">logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col min-w-0 bg-bg-main">
+    <!-- Topbar -->
+    <header class="h-16 border-b border-border-subtle bg-bg-sidebar flex items-center justify-between px-8 shrink-0">
+      <div class="text-[10px] font-medium text-text-secondary tracking-widest uppercase flex items-center">
+        NEXUS PLATFORM <span class="mx-2 text-text-secondary">•</span> VIEW
+      </div>
+
+      <!-- #6 Global Search -->
+      <div class="relative global-search-container flex-1 max-w-xs mx-6">
+        <div class="relative">
+          <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-[18px] pointer-events-none">search</span>
+          <input type="text"
+            [value]="searchQuery()"
+            (input)="onSearchInput($any($event.target).value)"
+            (focus)="searchQuery().length > 0 && showSearchDropdown.set(true)"
+            [placeholder]="'TOPBAR.SEARCH_PLACEHOLDER' | translate"
+            class="w-full pl-9 pr-8 py-1.5 bg-bg-main border border-border-subtle rounded-md text-sm text-text-primary placeholder-text-secondary/50 focus:outline-none focus:border-indigo-500 transition-colors">
+          @if (searchQuery()) {
+            <button (click)="clearSearch()" class="absolute right-2 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors">
+              <span class="material-icons text-[16px]">close</span>
+            </button>
+          }
+        </div>
+        @if (showSearchDropdown()) {
+          <div class="absolute top-full mt-1 left-0 right-0 bg-bg-card border border-border-subtle rounded-lg shadow-xl z-50 overflow-hidden">
+            @for (result of searchResults(); track result.route) {
+              <button (click)="selectSearchResult(result.route)"
+                class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-text-primary hover:bg-bg-hover transition-colors text-left">
+                <span class="material-icons text-[16px] text-text-secondary">arrow_forward</span>
+                <span>{{ result.label }}</span>
+                <span class="ml-auto text-[10px] text-text-secondary uppercase tracking-wide">{{ result.type }}</span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <!-- #10 Language switcher -->
+        <div class="flex items-center bg-bg-main rounded-lg border border-border-subtle overflow-hidden">
+          @for (lang of langs; track lang) {
+            <button (click)="switchLang(lang)"
+              [class]="activeLang() === lang ? 'bg-indigo-600/20 text-indigo-400' : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'"
+              class="px-2.5 py-1 text-[11px] font-semibold transition-colors">
+              {{ lang }}
+            </button>
+          }
+        </div>
+        <button (click)="dataService.toggleTheme()" class="text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-md hover:bg-bg-hover">
+          <span class="material-icons text-[18px]">{{ dataService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+
+        <!-- #1 WebSocket live notifications bell -->
+        <button (click)="wsService.clearUnread()" class="relative text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center w-8 h-8 rounded-md hover:bg-bg-hover" title="Notifications">
+          <span class="material-icons text-[18px]">notifications</span>
+          @if (wsService.unreadCount() > 0) {
+            <span class="absolute -top-1 -right-1 bg-rose-500 text-white text-[9px] font-bold rounded-full w-4 h-4 flex items-center justify-center leading-none">
+              {{ wsService.unreadCount() > 9 ? '9+' : wsService.unreadCount() }}
+            </span>
+          }
+          @if (wsService.connected()) {
+            <span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-emerald-500 border border-bg-sidebar"></span>
+          }
+        </button>
+        
+        <div class="flex items-center bg-bg-main rounded-lg p-1 border border-border-subtle">
+          @for (role of roles; track role) {
+            <button 
+              (click)="setRole(role)"
+              [class]="dataService.currentRole() === role ? 'bg-indigo-600/20 text-indigo-400' : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'"
+              class="px-3 py-1.5 rounded-md text-[11px] font-medium transition-colors flex items-center gap-1.5">
+              @if (role === 'Business User') { <span class="material-icons text-[14px] text-emerald-500">eco</span> }
+              @if (role === 'CFO') { <span class="material-icons text-[14px] text-amber-500">account_balance</span> }
+              @if (role === 'CEO') { <span class="material-icons text-[14px] text-rose-500">track_changes</span> }
+              @if (role === 'Platform Admin') { <span class="material-icons text-[14px] text-indigo-400">settings</span> }
+              {{ role }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="text-[11px] text-text-secondary flex items-center">
+        Acme Corporation <span class="mx-2 text-text-secondary">•</span> Iteration 1
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="flex-1 overflow-auto p-8">
+      <div class="max-w-7xl mx-auto">
+        @if (langReady()) {
+          <router-outlet></router-outlet>
+        }
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Global Toasts -->
+<div class="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div class="px-4 py-3 rounded-md shadow-lg border text-sm font-medium flex items-center gap-2 min-w-[300px] transition-all duration-300"
+         [class.bg-emerald-50]="toast.type === 'success'" [class.border-emerald-200]="toast.type === 'success'" [class.text-emerald-800]="toast.type === 'success'"
+         [class.dark:bg-emerald-900/30]="toast.type === 'success'" [class.dark:border-emerald-800]="toast.type === 'success'" [class.dark:text-emerald-400]="toast.type === 'success'"
+         [class.bg-rose-50]="toast.type === 'error'" [class.border-rose-200]="toast.type === 'error'" [class.text-rose-800]="toast.type === 'error'"
+         [class.dark:bg-rose-900/30]="toast.type === 'error'" [class.dark:border-rose-800]="toast.type === 'error'" [class.dark:text-rose-400]="toast.type === 'error'"
+         [class.bg-indigo-50]="toast.type === 'info'" [class.border-indigo-200]="toast.type === 'info'" [class.text-indigo-800]="toast.type === 'info'"
+         [class.dark:bg-indigo-900/30]="toast.type === 'info'" [class.dark:border-indigo-800]="toast.type === 'info'" [class.dark:text-indigo-400]="toast.type === 'info'">
+      <span class="material-icons text-[18px]">
+        {{ toast.type === 'success' ? 'check_circle' : toast.type === 'error' ? 'error' : 'info' }}
+      </span>
+      {{ toast.message }}
+      <button (click)="toastService.remove(toast.id)" class="ml-auto opacity-70 hover:opacity-100 transition-opacity flex items-center">
+        <span class="material-icons text-[16px]">close</span>
+      </button>
+    </div>
+  }
+</div>
+} @else {
+  <router-outlet></router-outlet>
+}

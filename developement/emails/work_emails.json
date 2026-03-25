@@ -1,0 +1,183 @@
+{
+  "day1_monday": [
+    {
+      "id": "email_001",
+      "from": "tom.anderson@acmecorp.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Production Issue - Need Immediate Support",
+      "body": "Hi Sarah,\n\nWe're experiencing a critical production issue affecting approximately 500 users. The application has been throwing 500 errors since 10 PM last night.\n\nThis is severely impacting our business operations and we need immediate assistance. Can we schedule an emergency call to discuss resolution?\n\nOur technical team is available anytime today.\n\nBest regards,\nTom Anderson\nCTO, Acme Corp",
+      "timestamp": "2025-01-06T22:47:00Z",
+      "labels": [
+        "IMPORTANT",
+        "INBOX"
+      ],
+      "sentiment": "frustrated",
+      "priority": "urgent",
+      "expected_response": {
+        "from": "sarah.vp@company.com",
+        "to": "tom.anderson@acmecorp.com",
+        "subject": "Re: Production Issue - Immediate Action",
+        "body": "Hi Tom,\n\nI sincerely apologize for the delay in response. I understand the critical nature of the production issue affecting your users.\n\nI've immediately escalated this to our engineering team and would like to schedule an emergency call at 11:00 AM today to discuss the resolution plan and next steps.\n\nI'm also looping in our CTO Mike Stevens to ensure we have the right technical expertise on the call.\n\nPlease confirm if 11 AM works for you.\n\nBest regards,\nSarah",
+        "cc": [
+          "mike.stevens@company.com"
+        ]
+      }
+    },
+    {
+      "id": "email_002",
+      "from": "john.sales@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Q4 Pipeline Review - Updated Numbers",
+      "body": "Hi Sarah,\n\nWanted to share the latest Q4 pipeline numbers before our meeting this afternoon:\n\n- Total pipeline: $2.3M (up 15% from last week)\n- Hot deals: 5 accounts ($850K total)\n- At risk: 2 accounts ($200K) - need your help\n\nCan we discuss the at-risk accounts in our 1-on-1?\n\nThanks,\nJohn",
+      "timestamp": "2025-01-06T08:15:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "normal"
+    },
+    {
+      "id": "email_003",
+      "from": "maria.finance@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Budget Approval Needed - Q1 Marketing Spend",
+      "body": "Sarah,\n\nI need your approval on the Q1 marketing budget by EOD today. The total is $125K, broken down as:\n\n- Digital advertising: $60K\n- Events and conferences: $40K\n- Content creation: $25K\n\nPlease review the attached spreadsheet and let me know if you have any concerns.\n\nThanks,\nMaria",
+      "timestamp": "2025-01-06T09:30:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "attachments": [
+        "Q1_Marketing_Budget.xlsx"
+      ],
+      "sentiment": "neutral",
+      "priority": "normal"
+    },
+    {
+      "id": "email_004",
+      "from": "jennifer.martinez@techflow.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Contract Renewal Questions",
+      "body": "Hi Sarah,\n\nHope you're doing well! We're looking to renew our contract next month and have a few questions:\n\n1. Can we add 50 more user licenses?\n2. Is there a discount for annual payment vs quarterly?\n3. Can we get a demo of the new features?\n\nLooking forward to our meeting on Wednesday.\n\nBest,\nJennifer Martinez\nVP Operations, TechFlow Inc",
+      "timestamp": "2025-01-06T14:20:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "positive",
+      "priority": "normal"
+    }
+  ],
+  "day2_tuesday": [
+    {
+      "id": "email_005",
+      "from": "tom.anderson@acmecorp.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Re: Production Issue - Status Update?",
+      "body": "Sarah,\n\nFollowing up on the production issue from yesterday. We still haven't received a timeline for resolution.\n\nOur users are getting increasingly frustrated and we're considering alternative solutions if this isn't resolved soon.\n\nCan you provide an update?\n\nTom",
+      "timestamp": "2025-01-07T07:23:00Z",
+      "labels": [
+        "IMPORTANT",
+        "INBOX"
+      ],
+      "sentiment": "frustrated",
+      "priority": "urgent"
+    },
+    {
+      "id": "email_006",
+      "from": "lisa.chen@acmecorp.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Executive Review Meeting Request",
+      "body": "Dear Sarah,\n\nI'm Lisa Chen, VP of Operations at Acme Corp. I'd like to schedule an executive review meeting to discuss our partnership and address some concerns.\n\nWould you be available for a call this week?\n\nBest regards,\nLisa Chen",
+      "timestamp": "2025-01-07T08:15:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "high"
+    },
+    {
+      "id": "email_007",
+      "from": "robert.kim@globalsystems.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Quarterly Review - Agenda Confirmation",
+      "body": "Hi Sarah,\n\nConfirming our quarterly review meeting for Thursday at 2 PM. Here's the agenda:\n\n1. Q4 performance review\n2. 2025 goals and initiatives\n3. Technical roadmap discussion\n4. Budget planning\n\nLet me know if you'd like to add anything.\n\nBest,\nRobert Kim",
+      "timestamp": "2025-01-07T11:45:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "normal"
+    }
+  ],
+  "day3_wednesday": [
+    {
+      "id": "email_008",
+      "from": "amanda.foster@datacorp.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Product Demo Follow-up - Pricing Questions",
+      "body": "Hi Sarah,\n\nThank you for the product demo yesterday! Our team is very excited about the possibilities.\n\nWe have a few pricing questions:\n1. Volume discounts for 200+ users?\n2. Implementation costs and timeline?\n3. Integration with our existing CRM?\n4. Training and support options?\n\nCan we schedule a call to discuss?\n\nBest,\nAmanda Foster\nDirector of Technology, DataCorp",
+      "timestamp": "2025-01-08T09:30:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "positive",
+      "priority": "high"
+    },
+    {
+      "id": "email_009",
+      "from": "mike.stevens@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Technical Architecture Review - Action Items",
+      "body": "Sarah,\n\nFollowing up from yesterday's architecture review meeting. Here are the action items:\n\n1. Review scalability proposal (YOU - by Friday)\n2. Approve infrastructure budget increase (YOU - by EOW)\n3. Schedule follow-up with engineering team\n\nLet me know if you have questions.\n\nMike",
+      "timestamp": "2025-01-08T15:20:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "normal"
+    }
+  ],
+  "day4_thursday": [
+    {
+      "id": "email_010",
+      "from": "jennifer.hr@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Performance Review Reminder - Direct Reports",
+      "body": "Hi Sarah,\n\nFriendly reminder that performance reviews for your direct reports are due by next Friday.\n\nOutstanding reviews:\n- John (Sales Manager)\n- Maria (Finance Lead)\n- Alex (Product Manager)\n\nPlease complete these in the HR portal by January 17th.\n\nThanks,\nJennifer\nHR Department",
+      "timestamp": "2025-01-09T10:00:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "normal"
+    },
+    {
+      "id": "email_011",
+      "from": "ceo@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Board Meeting Preparation - Sales Update",
+      "body": "Sarah,\n\nBoard meeting is next Tuesday. I need your sales update by Monday EOD covering:\n\n1. Q4 results vs forecast\n2. Q1 pipeline and projections\n3. Key wins and challenges\n4. Strategic initiatives for 2025\n\nKeep it to 10 slides max.\n\nThanks,\nDavid",
+      "timestamp": "2025-01-09T16:45:00Z",
+      "labels": [
+        "IMPORTANT",
+        "INBOX"
+      ],
+      "sentiment": "neutral",
+      "priority": "high"
+    }
+  ],
+  "day5_friday": [
+    {
+      "id": "email_012",
+      "from": "team@company.com",
+      "to": "sarah.vp@company.com",
+      "subject": "Team Happy Hour - Today at 5 PM",
+      "body": "Hey team!\n\nDon't forget - happy hour at Murphy's Bar today at 5 PM to celebrate closing Q4 strong!\n\nFirst round is on the company 🍺\n\nSee you there!\n- Events Team",
+      "timestamp": "2025-01-10T14:00:00Z",
+      "labels": [
+        "INBOX"
+      ],
+      "sentiment": "positive",
+      "priority": "low"
+    }
+  ]
+}

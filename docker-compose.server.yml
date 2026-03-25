@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# NEXUS Platform Dashboard — Docker Compose para servidor Proxmox
+# Uso:
+#   docker compose -f docker-compose.server.yml up -d --build
+#
+# El frontend se sirve en el puerto 80 (o 8080 si no hay acceso a root)
+# Kong gestiona el OIDC con Okta — el frontend solo redirige a Kong
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  nexus-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexus-frontend
+    restart: unless-stopped
+    ports:
+      - "80:8080"       # Puerto 80 del servidor → 8080 del contenedor Nginx
+    environment:
+      - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.conf
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  default:
+    name: nexus-frontend-net
