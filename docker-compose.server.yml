@@ -15,7 +15,7 @@ services:
     container_name: nexus-frontend
     restart: unless-stopped
     ports:
-      - "80:8080"       # Puerto 80 del servidor → 8080 del contenedor Nginx
+      - "8080:8080"     # Puerto 8080 del servidor → 8080 del contenedor Nginx (no requiere root)
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.conf
     healthcheck:
